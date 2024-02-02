@@ -1,22 +1,16 @@
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
-import NoteModel from './models/note'
+import notesRoutes from './routes/notes';
 
 const app = express();
 
-app.get("/",  async (req, res, next) => {
-    try {
-        // throw Error('Ayvayı yedik!');
-        const notes = await NoteModel.find().exec();
-        res.status(200).json(notes);
-        // res.send({NoteModel})
-    } catch (error) {
-        next(error);
-    }
+// JSON verilerini ayrıştırmak için middleware ekleniyor
+app.use(express.json());
 
-});
+//express.Router nesnesini monte etmek için kullanılmıştır.
+app.use("/api/notes" , notesRoutes);
 
-//route hata yönetimi
+//route hata yönetimi (endpoint)
 app.use((req, res, next) => {
     next(Error("Endpoint not found"));
 });
