@@ -8,7 +8,7 @@ const app = express();
 
 app.use(morgan("dev"));
 
-// JSON verilerini ayrıştırmak için middleware ekleniyor
+// JSON verilerini ayrıştırmak için middleware ekleniyor. createNote func kullanabilmek için.
 app.use(express.json());
 
 //express.Router nesnesini monte etmek için kullanılmıştır.
@@ -29,8 +29,7 @@ app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
         errorMessage = error.message;
     }
     res.status(statusCode).json({ error: errorMessage });
-})
-
+});
 
 
 export default app;
