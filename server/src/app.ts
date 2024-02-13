@@ -6,6 +6,7 @@ import createHttpError, { isHttpError } from "http-errors";
 
 const app = express();
 
+//günlük tutmaya yarar
 app.use(morgan("dev"));
 
 // JSON verilerini ayrıştırmak için middleware ekleniyor. createNote func kullanabilmek için.
