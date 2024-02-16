@@ -5,7 +5,7 @@ import { formatDate } from '../utils/formatDate';
 
 interface NoteProps {
     note: NoteModel,
-    className?: string  //not understand. why added
+    className?: string
 }
 
 const Note = ({ note, className } : NoteProps) => {
@@ -29,7 +29,7 @@ const Note = ({ note, className } : NoteProps) => {
             </CardText>
         </CardBody>
         <CardFooter className='text-muted'>
-            {note.createdAt}
+            {createdUpdatedText}
         </CardFooter>
     </Card>
   )
