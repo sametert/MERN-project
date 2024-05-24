@@ -1,0 +1,63 @@
+[
+    {
+      "duyurular_id": 1,
+      "tarih": "2024-05-16",
+      "icerik": "Yarıyıl sonu sınav takvimi güncellendi. Lütfen öğrenci portalınızı kontrol edin.",
+      "baslik": "Sınav Takvimi Güncellemesi"
+    },
+    {
+      "duyurular_id": 2,
+      "tarih": "2024-05-15",
+      "icerik": "Öğrenci kulüpleri tanıtım günü 20 Mayıs'ta yapılacaktır. Katılımınızı bekliyoruz.",
+      "baslik": "Kulüp Tanıtım Günü"
+    },
+    {
+      "duyurular_id": 3,
+      "tarih": "2024-05-14",
+      "icerik": "Yaz dönemi staj başvuruları sona eriyor. Başvurunuzu tamamlamayı unutmayın.",
+      "baslik": "Staj Başvuru Hatırlatması"
+    },
+    {
+      "duyurular_id": 4,
+      "tarih": "2024-05-13",
+      "icerik": "Üniversite kütüphanesi hafta sonları da açıktır. Çalışma saatlerini öğrenmek için web sitemizi ziyaret edin.",
+      "baslik": "Kütüphane Çalışma Saatleri"
+    },
+    {
+      "duyurular_id": 5,
+      "tarih": "2024-05-12",
+      "icerik": "Kariyer Gelişim Merkezi, CV hazırlama atölyesi düzenliyor. Detaylı bilgi için merkezimize uğrayın.",
+      "baslik": "CV Hazırlama Atölyesi"
+    },
+    {
+      "duyurular_id": 6,
+      "tarih": "2024-05-11",
+      "icerik": "Üniversite içi güvenlik önlemleri arttırıldı. Lütfen kimlik kartlarınızı yanınızda bulundurun.",
+      "baslik": "Güvenlik Önlemleri"
+    },
+    {
+      "duyurular_id": 7,
+      "tarih": "2024-05-10",
+      "icerik": "Akademik danışmanlık hizmetleri, yaz döneminde de devam edecektir. Randevu almak için öğrenci işleri ofisimize başvurun.",
+      "baslik": "Akademik Danışmanlık Hizmetleri"
+    },
+    {
+      "duyurular_id": 8,
+      "tarih": "2024-05-09",
+      "icerik": "Yaz dönemi kursları için kayıtlar başladı. Boş zamanlarınızı değerlendirmek için fırsatı kaçırmayın.",
+      "baslik": "Yaz Dönemi Kursları"
+    },
+    {
+      "duyurular_id": 9,
+      "tarih": "2024-05-08",
+      "icerik": "Mezuniyet töreni 25 Haziran'da yapılacaktır. Mezun olacak öğrencilerimiz için detaylar yakında duyurulacaktır.",
+      "baslik": "Mezuniyet Töreni Bilgisi"
+    },
+    {
+      "duyurular_id": 10,
+      "tarih": "2024-05-07",
+      "icerik": "Yabancı dil sınavı 1 Haziran'da gerçekleştirilecektir. Kayıt için son tarih 25 Mayıs'tır.",
+      "baslik": "Yabancı Dil Sınavı"
+    }
+]
+  

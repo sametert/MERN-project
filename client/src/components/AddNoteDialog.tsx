@@ -71,4 +71,3 @@ export default AddNoteDialog;
 function onNoteSaved(noteResponse: Note) {
     throw new Error("Function not implemented.");
 }
-

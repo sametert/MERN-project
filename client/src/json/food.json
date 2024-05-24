@@ -1,0 +1,49 @@
+{
+    "menu": [
+      {
+        "day": "Monday",
+        "items": [
+          "Grilled Chicken with Rice",
+          "Mixed Salad",
+          "Tomato Soup",
+          "Fruit Salad"
+        ]
+      },
+      {
+        "day": "Tuesday",
+        "items": [
+          "Spaghetti Bolognese",
+          "Caesar Salad",
+          "Minestrone Soup",
+          "Chocolate Pudding"
+        ]
+      },
+      {
+        "day": "Wednesday",
+        "items": [
+          "Beef Stir-fry with Vegetables",
+          "Greek Salad",
+          "Chicken Noodle Soup",
+          "Apple Pie"
+        ]
+      },
+      {
+        "day": "Thursday",
+        "items": [
+          "Vegetarian Pizza",
+          "Garden Salad",
+          "Pumpkin Soup",
+          "Vanilla Ice Cream"
+        ]
+      },
+      {
+        "day": "Friday",
+        "items": [
+          "Fish and Chips",
+          "Coleslaw",
+          "Clam Chowder",
+          "Brownie"
+        ]
+      }
+    ]
+  }
