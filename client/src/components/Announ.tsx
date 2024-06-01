@@ -4,7 +4,7 @@ import Note from './Note'
 import { Button, Col, Container, Row } from 'react-bootstrap';
 // import styles from './styles/NotePage.module.css';
 import * as NotesApi from "../network/notes_api";
-import AddNoteDialog from './AddNoteDialog';
+import AddEditNoteDialog from './AddEditNoteDialog';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useMainStore } from "../store/store";
 import megaphone from "../images/megaphone.jpeg";
@@ -14,8 +14,7 @@ function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
 
   const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
-
-  console.log(notes);
+  const [noteToEdit, setNoteToEdit] = useState<NoteModel|null>(null)
   const userValues = useMainStore((state) => state.userValues);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -33,6 +32,16 @@ function App() {
     loadNotes();
   }, []);
 
+  async function deleteNote(note: NoteModel) {
+      try {
+        await NotesApi.deleteNote(note._id);
+        setNotes(notes.filter(existingNote => existingNote._id !== note._id))
+      } catch (error) {
+        console.log(error);
+        alert(error);
+      }
+  }
+
   return (
     <div>
       <nav className="bg-gray-200 p-6 shadow-md sticky top-0 z-50 h-48">
@@ -41,7 +50,7 @@ function App() {
             <div className="flex items-center">
               <img src={megaphone} alt="Megaphone" className="align-middle w-20"/>
               <div>
-                <h1 className="text-5xl ml-4 font-bold">Announcements</h1>
+                <h1 className="text-5xl ml-4 font-bold">Duyurular</h1>
               </div>
             </div>
             <div className="relative">
@@ -74,26 +83,41 @@ function App() {
       <div className="w-full min-h-screen bg-gray-100">
         <div className="mx-auto max-w-4xl py-12 px-4">
           <div className='flex gap-4 justify-between my-2'>
-            <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Announcements</h1>       
+            <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Son Duyurular</h1>       
             <button
               onClick={() => setShowAddNoteDialog(true)}
               className='bg-gray-200 text-gray-800 p-4 rounded-lg shadow-md text-md hover:bg-gray-300 hover:shadow-lg transition-all duration-200'
             >
-              Add new note
+              Duyuru Ekle
             </button>
             {showAddNoteDialog && 
-            <AddNoteDialog 
+            <AddEditNoteDialog 
               onDismiss={() => setShowAddNoteDialog(false)}
               onNoteSaved={(newNote) => {
                 setNotes([newNote, ...notes]);
                 setShowAddNoteDialog(false)
               }}
             />
-      } 
+          }
+          {noteToEdit && 
+            <AddEditNoteDialog
+            noteToEdit={noteToEdit}
+            onDismiss={() => setNoteToEdit(null)}
+            onNoteSaved={(updatedNote) => {
+              setNotes(notes.map(existingNote => existingNote._id === updatedNote._id ? updatedNote : existingNote));
+              setNoteToEdit(null)
+            }}
+            />
+          } 
           </div>
           <div className="space-y-6 mb-4">
             {notes.map((note, i) => (
-              <Note note={note} index={i} />     
+              <Note 
+                note={note} 
+                index={i} 
+                onDeleteNoteClicked={deleteNote} 
+                onNoteClicked={setNoteToEdit} 
+              />     
             ))}
           </div>
           <div className='space-y-6'>

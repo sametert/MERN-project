@@ -1,49 +1,49 @@
 {
-    "menu": [
-      {
-        "day": "Monday",
-        "items": [
-          "Grilled Chicken with Rice",
-          "Mixed Salad",
-          "Tomato Soup",
-          "Fruit Salad"
-        ]
-      },
-      {
-        "day": "Tuesday",
-        "items": [
-          "Spaghetti Bolognese",
-          "Caesar Salad",
-          "Minestrone Soup",
-          "Chocolate Pudding"
-        ]
-      },
-      {
-        "day": "Wednesday",
-        "items": [
-          "Beef Stir-fry with Vegetables",
-          "Greek Salad",
-          "Chicken Noodle Soup",
-          "Apple Pie"
-        ]
-      },
-      {
-        "day": "Thursday",
-        "items": [
-          "Vegetarian Pizza",
-          "Garden Salad",
-          "Pumpkin Soup",
-          "Vanilla Ice Cream"
-        ]
-      },
-      {
-        "day": "Friday",
-        "items": [
-          "Fish and Chips",
-          "Coleslaw",
-          "Clam Chowder",
-          "Brownie"
-        ]
-      }
-    ]
-  }
+  "menu": [
+    {
+      "day": "Pazartesi",
+      "items": [
+        "Izgara Tavuk ve Pilav",
+        "Karışık Salata",
+        "Domates Çorbası",
+        "Meyve Salatası"
+      ]
+    },
+    {
+      "day": "Salı",
+      "items": [
+        "Spagetti Bolognese",
+        "Sezar Salata",
+        "Minestrone Çorbası",
+        "Çikolatalı Puding"
+      ]
+    },
+    {
+      "day": "Çarşamba",
+      "items": [
+        "Sebzeli Dana Sote",
+        "Yunan Salatası",
+        "Tavuklu Şehriye Çorbası",
+        "Elmalı Turta"
+      ]
+    },
+    {
+      "day": "Perşembe",
+      "items": [
+        "Vejetaryen Pizza",
+        "Bahçe Salatası",
+        "Balkabağı Çorbası",
+        "Vanilyalı Dondurma"
+      ]
+    },
+    {
+      "day": "Cuma",
+      "items": [
+        "Balık ve Patates Kızartması",
+        "Lahana Salatası",
+        "Midye Çorbası",
+        "Browni"
+      ]
+    }
+  ]
+}

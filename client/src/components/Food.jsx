@@ -33,27 +33,27 @@ function Food() {
               <ul className="flex space-x-4 border p-4 bg-gray-750 text-sm rounded-full">
                 <li>
                   <Link to="/" className="text-black hover:font-medium">
-                    Login
+                    Kayıt Ol
                   </Link>
                 </li>
                 <li>
                   <Link to="/home" className="text-black hover:font-medium">
-                    Home
+                    Ana Ekran
                   </Link>
                 </li>
                 <li>
                   <Link to="/announ" className="text-black hover:font-medium">
-                    Announs
+                    Duyurular
                   </Link>
                 </li>
                 <li>
                   <Link to="/events" className="text-black hover:font-medium">
-                    Events
+                    Etkinlik
                   </Link>
                 </li>
                 <li>
                   <Link to="/lesson" className="text-black hover:font-medium">
-                    Lesson
+                    Dersler
                   </Link>
                 </li>
               </ul>

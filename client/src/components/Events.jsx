@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useMainStore } from "../store/store";
 import events from "../json/etkinlik.json";
-import AddNoteDialog from './AddNoteDialog';
+import AddNoteDialog from './AddEditNoteDialog';
 import * as NotesApi from "../network/notes_api";
 import Event from './Event'
 
@@ -62,7 +62,7 @@ function Events() {
               {/* <img src={eventLogo} alt="Event Logo" className="align-middle w-20"/> */}
               <div>
                 <h1 className="text-5xl ml-4 font-bold text-gray-700">
-                  Events
+                  Etkinlikler
                 </h1>
               </div>
             </div>
@@ -97,13 +97,13 @@ function Events() {
         <div className="mx-auto max-w-4xl py-12 px-4">
           <div className="flex gap-4 justify-between my-2">
             <h1 className="text-4xl font-bold mb-8 text-center text-gray-700">
-              Upcoming Events
+              Son Etkinlikler
             </h1>
             <button
               onClick={() => setShowAddNoteDialog(true)}
               className="bg-gradient-to-r from-green-200 via-purple-200 to-purple-300 p-6 shadow-md rounded-lg  text-md hover:bg-gray-300 hover:shadow-lg transition-all duration-200"
             >
-              Add new note
+              Yeni Etkinlik Ekle
             </button>
             {showAddNoteDialog && (
               <AddNoteDialog

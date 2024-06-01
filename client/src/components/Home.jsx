@@ -33,27 +33,27 @@ function Home() {
               <ul className="flex space-x-4 border p-4 bg-gray-750 text-sm rounded-full">
               <li>
                   <Link to="/" className="text-black hover:font-medium">
-                    Login
+                    Kayıt Ol
                   </Link>
                 </li>
                 <li>
                   <Link to="/food" className="text-black hover:font-medium">
-                    Food
+                    Yemekhane
                   </Link>
                 </li>
                 <li>
                   <Link to="/announ" className="text-black hover:font-medium">
-                    Announs
+                    Duyurular
                   </Link>
                 </li>
                 <li>
                   <Link to="/events" className="text-black hover:font-medium">
-                    Events
+                    Etkinlik
                   </Link>
                 </li>
                 <li>
                   <Link to="/lesson" className="text-black hover:font-medium">
-                    Lesson
+                    Dersler
                   </Link>
                 </li>
               </ul>
@@ -95,8 +95,7 @@ function Home() {
                 <div className="grow-0">
                   <h1 className="font-semibold text-lg">Dersler</h1>
                   <p className="text-sm text-slate-600">
-                    Kullanıcıların ders programlarını görüntüleyebilmeleri,
-                    indirebilmeleri ve notlarını kaydedebilmelerini sağlar.
+                    Kullanıcıların ders programlarını görüntüleyebilmeleri sağlar.
                   </p>
                   <Link
                     to="/lesson"

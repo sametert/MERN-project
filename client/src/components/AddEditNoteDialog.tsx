@@ -4,17 +4,28 @@ import { NoteInput } from "../network/notes_api";
 import * as NotesApi from "../network/notes_api";
 import { Note } from "../models/note";
 
-interface AddNoteDialogProps {
+interface AddEditNoteDialogProps {
+    noteToEdit?: Note,
     onDismiss: () => void,
     onNoteSaved: (note: Note) => void
 }
 
-const AddNoteDialog = ({ onDismiss, onNoteSaved} : AddNoteDialogProps) => {
-    const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<NoteInput>();
+const AddEditNoteDialog = ({ noteToEdit, onDismiss, onNoteSaved} : AddEditNoteDialogProps) => {
+    const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<NoteInput>({
+        defaultValues: {
+            title: noteToEdit?.title || "",
+            text: noteToEdit?.text || ""
+        }
+    });
 
     async function onSubmit(input: NoteInput) {
         try {
-            const noteResponse = await NotesApi.createNote(input);
+            let noteResponse: Note;
+            if (noteToEdit) {
+                noteResponse = await NotesApi.updateNote(noteToEdit._id, input);
+            } else {
+                noteResponse = await NotesApi.createNote(input);
+            }
             onNoteSaved(noteResponse)
         } catch (error) {
             console.log(error);
@@ -27,11 +38,11 @@ const AddNoteDialog = ({ onDismiss, onNoteSaved} : AddNoteDialogProps) => {
         <Modal show onHide={onDismiss}>
             <ModalHeader closeButton>
                 <ModalTitle>
-                    Add Note
+                    {noteToEdit ? "Edit Note" : "Add Note"}
                 </ModalTitle>
             </ModalHeader>
             <ModalBody>
-                <Form id="addNoteForm" onSubmit={handleSubmit(onSubmit)}>
+                <Form id="addEditNoteForm" onSubmit={handleSubmit(onSubmit)}>
                     <FormGroup className="mb-3">
                         <FormLabel>Title</FormLabel>
                         <FormControl 
@@ -58,7 +69,7 @@ const AddNoteDialog = ({ onDismiss, onNoteSaved} : AddNoteDialogProps) => {
             </ModalBody>
 
             <ModalFooter>
-                <Button type="submit" form="addNoteForm" disabled={isSubmitting}>
+                <Button type="submit" form="addEditNoteForm" disabled={isSubmitting}>
                     Save
                 </Button>
             </ModalFooter>
@@ -66,7 +77,7 @@ const AddNoteDialog = ({ onDismiss, onNoteSaved} : AddNoteDialogProps) => {
      );
 }
  
-export default AddNoteDialog;
+export default AddEditNoteDialog;
 
 function onNoteSaved(noteResponse: Note) {
     throw new Error("Function not implemented.");

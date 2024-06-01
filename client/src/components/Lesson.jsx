@@ -29,27 +29,27 @@ function Lesson() {
               <ul className="flex space-x-4 border p-4 bg-gray-750 text-sm rounded-full">
               <li>
                   <Link to="/" className="text-black hover:font-medium">
-                    Login
+                    Kayıt Ol
                   </Link>
                 </li>
                 <li>
                   <Link to="/home" className="text-black hover:font-medium">
-                    Home
+                    Ana Sayfa
                   </Link>
                 </li>
                 <li>
                   <Link to="/announ" className="text-black hover:font-medium">
-                    Announs
+                    Duyurular
                   </Link>
                 </li>
                 <li>
                   <Link to="/events" className="text-black hover:font-medium">
-                    Events
+                    Etkinlik
                   </Link>
                 </li>
                 <li>
                   <Link to="/food" className="text-black hover:font-medium">
-                    Food
+                    Yemekhane
                   </Link>
                 </li>
               </ul>
@@ -97,7 +97,7 @@ function Lesson() {
               {day.courses.map((course, index) => (
                 <div
                   key={index}
-                  className={`mb-4 p-4 rounded-lg shadow transition duration-300 ease-in-out transform hover:shadow-xl hover:scale-105    ${course.color}`}
+                  className={`mb-4 p-4 rounded-lg shadow transition duration-300 ease-in-out transform hover:shadow-xl hover:scale-105   ${course.color}`}
                 >
                   <p className="text-black text-sm">{course.time}</p>
                   <p className="font-bold text-black text-lg">{course.name}</p>
