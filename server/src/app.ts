@@ -7,6 +7,9 @@ import userRoutes from "./routes/users";
 import session from "express-session";
 import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
+import lessonRoutes from "./routes/lessons";
+import eventRoutes from "./routes/events";
+import foodRoutes from "./routes/food";
 
 const app = express();
 
@@ -29,10 +32,17 @@ app.use(session({
     })
 }))
 
+app.use("/api/lessons", lessonRoutes)
+
 app.use("/api/users", userRoutes);
 
 //express.Router nesnesini monte etmek için kullanılmıştır.
 app.use("/api/notes" , notesRoutes);
+
+app.use("/api/events", eventRoutes)
+
+app.use("/api/foods", foodRoutes)
+
 
 //route hata yönetimi (endpoint)
 app.use((req, res, next) => {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useMainStore } from "../store/store";
-import merp from "../images/merp1.png";
+import { useMainStore } from "../../store/store";
+import merp from "../../images/merp1.png";
 
 function Login() {
   const navigateTo = useNavigate();

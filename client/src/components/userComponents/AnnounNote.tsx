@@ -1,7 +1,7 @@
 import styles from '../styles/Note.module.css';
 import { Card, CardBody, CardFooter, CardText, CardTitle } from "react-bootstrap"
-import { Note as NoteModel } from "../models/note"
-import { formatDate } from '../utils/formatDate';
+import { Note as NoteModel } from "../../models/note"
+import { formatDate } from '../../utils/formatDate';
 import { MdDelete } from "react-icons/md";
 
 interface NoteProps {
@@ -47,12 +47,12 @@ const Note = ({ note, className, index, onDeleteNoteClicked, onNoteClicked } : N
           <h2 className="text-xl font-semibold cursor-pointer hover:underline">{note.title}</h2>
           <p className="mt-2 text-gray-700">{note.text}</p>
         </div>
-        <div className='text-xl cursor-pointer'>
+        {/* <div className='text-xl cursor-pointer'>
           <MdDelete onClick={(e) => {
             onDeleteNoteClicked(note);
             e.stopPropagation();
           }} />
-        </div>
+        </div> */}
       </div>
       
 

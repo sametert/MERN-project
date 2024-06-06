@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Note as NoteModel } from '../models/note';
-import Note from './Note'
-import { Button, Col, Container, Row } from 'react-bootstrap';
-// import styles from './styles/NotePage.module.css';
-import * as NotesApi from "../network/notes_api";
-import AddEditNoteDialog from './AddEditNoteDialog';
+import { Note as NoteModel } from '../../models/note';
+import AnnounNote from './AnnounNote'
+import * as NotesApi from "../../network/notes_api";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { useMainStore } from "../store/store";
-import megaphone from "../images/megaphone.jpeg";
-import duyurular from "../json/duyurular.json"
+import { useMainStore } from "../../store/store";
+import megaphone from "../../images/megaphone.jpeg";
+import duyurular from "../../json/duyurular.json"
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
 
-  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
   const [noteToEdit, setNoteToEdit] = useState<NoteModel|null>(null)
   const userValues = useMainStore((state) => state.userValues);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,7 +20,7 @@ function App() {
           const notes = await NotesApi.fetchNotes();
           setNotes(notes);
         } catch (error) {
-          // console.error(error);
+          console.error(error);
           alert(error);
         }
     }
@@ -52,6 +48,30 @@ function App() {
               <div>
                 <h1 className="text-5xl ml-4 font-bold">Duyurular</h1>
               </div>
+            </div>
+            <div className="hidden md:block">
+              <ul className="flex space-x-4 border-2 border-gray-600 p-4 bg-gray-750 rounded-full text-base ">
+                <li>
+                  <Link to="/home" className="text-black hover:font-medium">
+                    Ana Sayfa
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/eventUser" className="text-black hover:font-medium">
+                    Etkinlikler
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/lessonUser" className="text-black hover:font-medium">
+                    Dersler
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/foodUser" className="text-black hover:font-medium">
+                    Yemekhane
+                  </Link>
+                </li>
+              </ul>
             </div>
             <div className="relative">
             <div
@@ -84,13 +104,13 @@ function App() {
         <div className="mx-auto max-w-4xl py-12 px-4">
           <div className='flex gap-4 justify-between my-2'>
             <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Son Duyurular</h1>       
-            <button
+            {/* <button
               onClick={() => setShowAddNoteDialog(true)}
               className='bg-gray-200 text-gray-800 p-4 rounded-lg shadow-md text-md hover:bg-gray-300 hover:shadow-lg transition-all duration-200'
             >
               Duyuru Ekle
-            </button>
-            {showAddNoteDialog && 
+            </button> */}
+            {/* {showAddNoteDialog && 
             <AddEditNoteDialog 
               onDismiss={() => setShowAddNoteDialog(false)}
               onNoteSaved={(newNote) => {
@@ -98,8 +118,8 @@ function App() {
                 setShowAddNoteDialog(false)
               }}
             />
-          }
-          {noteToEdit && 
+          } */}
+          {/* {noteToEdit && 
             <AddEditNoteDialog
             noteToEdit={noteToEdit}
             onDismiss={() => setNoteToEdit(null)}
@@ -108,11 +128,11 @@ function App() {
               setNoteToEdit(null)
             }}
             />
-          } 
+          }  */}
           </div>
-          <div className="space-y-6 mb-4">
+          <div className="space-y-6 mb-4 cursor-pointer">
             {notes.map((note, i) => (
-              <Note 
+              <AnnounNote 
                 note={note} 
                 index={i} 
                 onDeleteNoteClicked={deleteNote} 
@@ -120,7 +140,7 @@ function App() {
               />     
             ))}
           </div>
-          <div className='space-y-6'>
+          <div className='space-y-6 cursor-pointer'>
             {duyurular.map((duyuru,i) => (
                <div key={i} className={`p-6 rounded-lg shadow-md flex gap-4 hover:shadow-lg transition-shadow ${i % 2 === 0 ? 'bg-blue-100' : 'bg-yellow-100'}`}>
                <div className={`w-32 flex-shrink-0 ${i % 2 === 0 ? 'text-blue-600' : 'text-yellow-600'}`}>{duyuru.tarih}</div>
@@ -159,5 +179,3 @@ export default App;
 function createHttpError(arg0: number) {
   throw new Error('Function not implemented.');
 }
-
-

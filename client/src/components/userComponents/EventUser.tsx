@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { useMainStore } from "../store/store";
-import events from "../json/etkinlik.json";
-import AddNoteDialog from './AddEditNoteDialog';
-import * as NotesApi from "../network/notes_api";
-import Event from './Event'
+import { useMainStore } from "../../store/store";
+import events from "../../json/etkinlik.json";
+import AddEditEventDialog from "../AddEditEventDialog";
+import * as EventsApi from "../../network/notes_api";
+import EventKullanici from '../EventKullanici'
+import { Event as EventModel } from '../../models/event';
 
 function Events() {
   const userValues = useMainStore((state) => state.userValues);
@@ -12,25 +13,40 @@ function Events() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
+  const [showAddEventDialog, setShowAddEventDialog] = useState(false);
 
-  const [etkinlikler, setEtkinlikler] = useState([]);
+  const [etkinlikler, setEtkinlikler] = useState<EventModel[]>([]);
+
+  const [eventToEdit, setEventToEdit] = useState<EventModel|null>(null)
+
+  console.log(etkinlikler);
 
   useEffect(() => {
-    const loadNotes = async () => {
+    const loadEvents = async () => {
         try {
-          const notes = await NotesApi.fetchNotes();
-          setEtkinlikler(notes);
+          const events = await EventsApi.fetchEvent();
+          setEtkinlikler(events);
         } catch (error) {
-          // console.error(error);
+          console.error(error);
           alert(error);
         }
     }
 
-    loadNotes();
+    loadEvents();
   }, []);
 
-  const handleEmailChange = (event) => {
+  async function deleteEvent(event: EventModel) {
+    try {
+      const result = await EventsApi.deleteEvent(event._id);
+      console.log(result);
+      setEtkinlikler(etkinlikler.filter(existingNote => existingNote._id !== event._id))
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
+}
+
+  const handleEmailChange = (event : any) => {
     setEmail(event.target.value);
   };
 
@@ -59,12 +75,33 @@ function Events() {
         <div className="max-w-6xl mx-auto h-full">
           <div className="flex justify-between items-center h-full text-gray-800">
             <div className="flex items-center">
-              {/* <img src={eventLogo} alt="Event Logo" className="align-middle w-20"/> */}
-              <div>
-                <h1 className="text-5xl ml-4 font-bold text-gray-700">
+              <h1 className="text-5xl ml-4 font-bold text-gray-700">
                   Etkinlikler
-                </h1>
-              </div>
+              </h1>
+            </div>
+            <div className="hidden md:block">
+              <ul className="flex space-x-4 border-2 p-4 bg-gray-750 rounded-full text-base ">
+                <li>
+                  <Link to="/home" className="text-black hover:font-medium">
+                    Ana Sayfa
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/announUser" className="text-black hover:font-medium">
+                    Duyurular
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/lessonUser" className="text-black hover:font-medium">
+                    Dersler
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/foodUser" className="text-black hover:font-medium">
+                    Yemekhane
+                  </Link>
+                </li>
+              </ul>
             </div>
             <div className="relative">
             <div
@@ -79,7 +116,6 @@ function Events() {
                 <div className="absolute right-0 bg-white rounded-md shadow-md mt-2 w-40">
                   <div className="py-2">
                     <Link
-                      // onClick={handleLogout}
                       to="/"
                       className="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-200"
                     >
@@ -99,26 +135,42 @@ function Events() {
             <h1 className="text-4xl font-bold mb-8 text-center text-gray-700">
               Son Etkinlikler
             </h1>
-            <button
-              onClick={() => setShowAddNoteDialog(true)}
+            {/* <button
+              onClick={() => setShowAddEventDialog(true)}
               className="bg-gradient-to-r from-green-200 via-purple-200 to-purple-300 p-6 shadow-md rounded-lg  text-md hover:bg-gray-300 hover:shadow-lg transition-all duration-200"
             >
               Yeni Etkinlik Ekle
             </button>
-            {showAddNoteDialog && (
-              <AddNoteDialog
-                onDismiss={() => setShowAddNoteDialog(false)}
-                onNoteSaved={(newNote) => {
-                  setEtkinlikler([newNote, ...etkinlikler]);
-                  setShowAddNoteDialog(false);
+            {showAddEventDialog && (
+              <AddEditEventDialog
+                onDismiss={() => setShowAddEventDialog(false)}
+                onEventSaved={(newEvent) => {
+                  setEtkinlikler([newEvent, ...etkinlikler]);
+                  setShowAddEventDialog(false);
                 }}
               />
             )}
+
+          {eventToEdit && 
+            <AddEditEventDialog
+            eventToEdit={eventToEdit}
+            onDismiss={() => setEventToEdit(null)}
+            onEventSaved={(updatedEvent) => {
+              setEtkinlikler(etkinlikler.map(existingNote => existingNote._id === updatedEvent._id ? updatedEvent : existingNote));
+              setEventToEdit(null)
+            }}
+            />
+          }   */}
           </div>
 
           <div className="space-y-6 mb-4">
             {etkinlikler.map((etkinlik, i) => (
-               <Event note={etkinlik} index={i} />
+               <EventKullanici 
+                event={etkinlik} 
+                index={i}
+                onDeleteEventClicked={() => {}} 
+                onEventClicked={() => {}} 
+                />
             ))}
           </div>
 
