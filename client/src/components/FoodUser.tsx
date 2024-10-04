@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMainStore } from "../store/store";
 import merp from "../images/merpLogo1.png";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -8,23 +8,54 @@ import breakfast2 from "../images/breakfast2.jpg";
 import coffee from "../images/coffe.jpg";
 import tea from "../images/tea.jpg";
 import food from "../json/food.json"
+import { Food as FoodModel } from '../models/food';
+import * as FoodsApi from "../network/notes_api";
+import FoodKullanici from "./FoodKullanici";
 
-function Food() {
+function FoodUser() {
   const userValues = useMainStore((state) => state.userValues);
   const [menuOpen, setMenuOpen] = useState(false);
-
   const foodMenu = food.menu;
-  console.log(foodMenu);
+  const [foods, setFoods] = useState<FoodModel[]>([]);
+
+
+  useEffect(() => {
+    const loadFoods = async () => {
+        try {
+          const foods = await FoodsApi.fetchFood();
+          setFoods(foods);
+        } catch (error) {
+          console.error(error);
+          alert(error);
+        }
+    }
+
+    loadFoods();
+  }, []);
+
+
+
+  function groupFoodsByDay(foods : any) {
+    return foods.reduce((acc: any, food: any) => {
+      if (!acc[food.day]) {
+        acc[food.day] = [];
+      }
+      acc[food.day].push(food);
+      return acc;
+    }, {});
+  }
+
+const groupedFoods = groupFoodsByDay(foods);
 
   return (
     <div>
-      <nav className="bg-white  shadow-lg sticky top-0 z-50">
+      <nav className="bg-white shadow-lg sticky top-0 z-50">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <img
                 src={merp}
-                alt=""
+                alt="merp"
                 className="align-middle"
                 style={{ height: "150px" }}
               />
@@ -32,28 +63,23 @@ function Food() {
             <div className="hidden md:block">
               <ul className="flex space-x-4 border p-4 bg-gray-750 text-sm rounded-full">
                 <li>
-                  <Link to="/" className="text-black hover:font-medium">
-                    Login
-                  </Link>
-                </li>
-                <li>
                   <Link to="/home" className="text-black hover:font-medium">
-                    Home
+                    Ana Ekran
                   </Link>
                 </li>
                 <li>
-                  <Link to="/announ" className="text-black hover:font-medium">
-                    Announs
+                  <Link to="/announUser" className="text-black hover:font-medium">
+                    Duyurular
                   </Link>
                 </li>
                 <li>
-                  <Link to="/events" className="text-black hover:font-medium">
-                    Events
+                  <Link to="/eventUser" className="text-black hover:font-medium">
+                    Etkinlik
                   </Link>
                 </li>
                 <li>
-                  <Link to="/lesson" className="text-black hover:font-medium">
-                    Lesson
+                  <Link to="/lessonUser" className="text-black hover:font-medium">
+                    Dersler
                   </Link>
                 </li>
               </ul>
@@ -71,7 +97,6 @@ function Food() {
                 <div className="absolute bg-white rounded-md shadow-md mt-2 w-40">
                   <div className="py-2">
                     <Link
-                      // onClick={handleLogout}
                       to="/"
                       className="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-200"
                     >
@@ -123,31 +148,51 @@ function Food() {
         </div>
       </div>
 
-      <div className="bg-blue-500 px-2 py-2 mx-4 mt-2 rounded">
-        <h1 className="text-white font-semibold text-xl">BREAKFAST</h1>   
+      <div className="bg-gray-800 px-2 py-2 mt-2 rounded">
+        <h1 className="text-white font-semibold text-3xl text-center">YEMEK MENÜSÜ</h1>   
       </div>
-
       <div className="grid xl:grid-cols-5 gap-x-4 gap-y-2 mx-4 mt-2">
         {foodMenu.map((day) => (
-          <div key={day.day}  className="bg-white shadow-lg rounded-lg p-4 cursor-pointer  border-blue-500 border-8">
-            <h2 className="text-2xl font-semibold mb-4 text-center">
+          <div key={day.day}  className="bg-gray-900 shadow-lg rounded-lg p-4 cursor-pointer  border-gray-800 border-8">
+            <h2 className="text-2xl font-semibold mb-4 text-center text-white">
                 {day.day}
             </h2>
             {day.items.map((item, index) => (
                 <div
                   key={index}
-                  className={`mb-4 p-4 rounded-lg shadow transition duration-300 ease-in-out transform hover:shadow-xl hover:scale-105`}
+                  className={`mb-4 p-4 rounded-lg shadow transition duration-300 ease-in-out transform hover:shadow-xl hover:scale-105 bg-gray-800`}
                 >
-                  <p className="text-black text-sm">{item}</p>
+                  <p className="text-white text-base">{item}</p>
                 </div>
             ))}
-
           </div>
         ))}
-
+      </div>
+      <div className="bg-gray-500 px-2 py-2 mt-2 rounded">
+        <h1 className="text-white font-semibold text-3xl text-center">YENİ EKLENMİŞ MENÜLER</h1>   
+      </div>
+      <div className="grid xl:grid-cols-5 gap-x-4 gap-y-2 mx-4 mt-2">
+        {Object.keys(groupedFoods).map(day => (
+            <div key={day} className="bg-gray-500 shadow-lg rounded-lg p-4 border-8 border-gray-400">
+              <h2 className="text-2xl font-semibold mb-4 text-center">
+                {day}
+              </h2>
+              {groupedFoods[day].map((food: any, i: any) => (
+                <FoodKullanici
+                  key={food._id} 
+                  food={food} 
+                  index={i} 
+                  onDeleteFoodClicked={() => {}} 
+                  onFoodClicked={() => {}} 
+                />          
+              ))}
+            </div>
+          ))}
       </div>
     </div>
   );
 }
 
-export default Food;
+export default FoodUser;
+
+

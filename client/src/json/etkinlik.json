@@ -1,61 +1,61 @@
 [
     {
         "etkinlik_id": 1,
-        "tarih": "2024-06-01",
+        "tarih": "2024-05-23",
         "icerik": "Üniversitemizde bahar şenlikleri düzenleniyor. Konserler, oyunlar ve daha fazlası sizleri bekliyor.",
         "baslik": "Bahar Şenlikleri"
     },
     {
         "etkinlik_id": 2,
-        "tarih": "2024-06-05",
+        "tarih": "2024-05-22",
         "icerik": "Ünlü yazarlarla söyleşi ve imza günü etkinliğimiz olacaktır. Tüm kitapseverleri bekliyoruz.",
         "baslik": "Yazar Söyleşisi ve İmza Günü"
     },
     {
         "etkinlik_id": 3,
-        "tarih": "2024-06-10",
+        "tarih": "2024-05-21",
         "icerik": "Kariyer Gelişim Merkezi tarafından düzenlenen 'Mülakat Teknikleri' seminerine davetlisiniz.",
         "baslik": "Mülakat Teknikleri Semineri"
     },
     {
         "etkinlik_id": 4,
-        "tarih": "2024-06-15",
+        "tarih": "2024-05-20",
         "icerik": "Tiyatro kulübümüzün sahneleyeceği yeni oyun 'Bir Yaz Gecesi Rüyası' için biletler satışa çıktı.",
         "baslik": "Tiyatro Gösterimi: Bir Yaz Gecesi Rüyası"
     },
     {
         "etkinlik_id": 5,
-        "tarih": "2024-06-20",
+        "tarih": "2024-05-19",
         "icerik": "Fotoğrafçılık kulübümüz tarafından düzenlenen sergiye davetlisiniz. Sergi, sanat galerisinde yapılacaktır.",
         "baslik": "Fotoğraf Sergisi"
     },
     {
         "etkinlik_id": 6,
-        "tarih": "2024-06-25",
+        "tarih": "2024-05-18",
         "icerik": "Üniversite öğrencileri ve personeli için düzenlenen yoga atölyesine katılmak için kayıt olun.",
         "baslik": "Yoga Atölyesi"
     },
     {
         "etkinlik_id": 7,
-        "tarih": "2024-06-30",
+        "tarih": "2024-05-17",
         "icerik": "Teknoloji kulübü tarafından düzenlenen hackathon etkinliği ile yaratıcı projelere imza atabilirsiniz.",
         "baslik": "Hackathon Etkinliği"
     },
     {
         "etkinlik_id": 8,
-        "tarih": "2024-07-05",
+        "tarih": "2024-05-16",
         "icerik": "Film kulübümüz tarafından düzenlenen açık hava sinema gecesine davetlisiniz.",
         "baslik": "Açık Hava Sinema Gecesi"
     },
     {
         "etkinlik_id": 9,
-        "tarih": "2024-07-10",
+        "tarih": "2024-05-15",
         "icerik": "İngilizce konuşma kulübümüzün düzenlediği 'Konuşma Pratikleri' etkinliğine katılın.",
         "baslik": "İngilizce Konuşma Pratikleri"
     },
     {
         "etkinlik_id": 10,
-        "tarih": "2024-07-15",
+        "tarih": "2024-05-14",
         "icerik": "Spor kulübümüz tarafından organize edilen basketbol turnuvasına tüm öğrenciler davetlidir.",
         "baslik": "Basketbol Turnuvası"
     }

@@ -1,21 +1,12 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useMainStore } from "../store/store";
-import img1 from "../images/akademik.jpg";
-import social from "../images/sosyal.jpg";
-import duyuru from "../images/duyuru.jpg";
-import yemekhane from "../images/yemekhane.jpg";
-import merp from "../images/merpLogo1.png";
+import img1 from "../../images/akademik.jpg";
+import social from "../../images/sosyal.jpg";
+import duyuru from "../../images/duyuru.jpg";
+import yemekhane from "../../images/yemekhane.jpg";
+import merp from "../../images/merpLogo1.png";
 
-
-function Home() {
-  const userValues = useMainStore((state) => state.userValues);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  console.log(userValues);
-
+function Homes() {
   return (
     <div>
       <nav className="bg-white  shadow-lg sticky top-0 z-50">
@@ -24,62 +15,15 @@ function Home() {
             <div className="flex items-center">
               <img
                 src={merp}
-                alt=""
+                alt="merp"
                 className="align-middle"
                 style={{ height: "150px" }}
               />
             </div>
             <div className="hidden md:block">
-              <ul className="flex space-x-4 border p-4 bg-gray-750 text-sm rounded-full">
-              <li>
-                  <Link to="/" className="text-black hover:font-medium">
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/food" className="text-black hover:font-medium">
-                    Food
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/announ" className="text-black hover:font-medium">
-                    Announs
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/events" className="text-black hover:font-medium">
-                    Events
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/lesson" className="text-black hover:font-medium">
-                    Lesson
-                  </Link>
-                </li>
+              <ul className="flex space-x-4 border p-4 bg-gray-750 rounded-full text-lg cursor-pointer">
+                <li>Merp Admin Panel</li>
               </ul>
-            </div>
-            <div className="relative">
-              <div
-                className="flex flex-col items-center justify-center gap-1 cursor-pointer"
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <p className="text-lg font-semibold">{userValues.name} {userValues.secondname.toUpperCase()}</p>
-                <p className="text-sm">{userValues.department} Bölümü</p>
-                <p className="text-sm">{userValues.classYear}. Sınıf</p>
-              </div>
-              {menuOpen && (
-                <div className="absolute bg-white rounded-md shadow-md mt-2 w-40">
-                  <div className="py-2">
-                    <Link
-                      // onClick={handleLogout}
-                      to="/"
-                      className="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-200"
-                    >
-                      Çıkış Yap
-                    </Link>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -95,8 +39,8 @@ function Home() {
                 <div className="grow-0">
                   <h1 className="font-semibold text-lg">Dersler</h1>
                   <p className="text-sm text-slate-600">
-                    Kullanıcıların ders programlarını görüntüleyebilmeleri,
-                    indirebilmeleri ve notlarını kaydedebilmelerini sağlar.
+                    Kullanıcıların ders programlarını görüntüleyebilmeleri
+                    sağlar.
                   </p>
                   <Link
                     to="/lesson"
@@ -121,7 +65,7 @@ function Home() {
                     görüntüleme.
                   </p>
                   <Link
-                    to="/events"
+                    to="/event"
                     className="text-red-800 hover:font-medium text-xs hover:text-sm"
                   >
                     Daha fazlasını görmek için tıklayınız.
@@ -184,4 +128,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Homes;
