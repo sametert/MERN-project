@@ -19,10 +19,14 @@ function App() {
   const userValues = useMainStore((state) => state.userValues);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  console.log(duyurular)
+
+
   useEffect(() => {
     const loadNotes = async () => {
         try {
           const notes = await NotesApi.fetchNotes();
+          console.log(notes)
           setNotes(notes);
         } catch (error) {
           // console.error(error);
